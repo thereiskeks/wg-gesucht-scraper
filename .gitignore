@@ -2,3 +2,5 @@
 .ropeproject
 lastid.tmp
 body.tmp
+venv/*
+.idea/*
