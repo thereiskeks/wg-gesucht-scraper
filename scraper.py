@@ -48,7 +48,7 @@ def bot_sendtext(bot_message):
     requests.get(send_text)
 
 
-resp = requests.get('https://www.wg-gesucht.de/wg-zimmer-in-Muenchen.90.0.1.0.html#back_to_ad_3689803')
+resp = requests.get('https://www.wg-gesucht.de/wg-zimmer-in-Muenchen.90.0.1.0.html?csrf_token=12ab2271e0f9bbb7af82a6924b4d9022f0e43c8f&offer_filter=1&noDeact=1&city_id=90&category=0&rent_type=0&dFr=1551308400&dTo=1553986800')
 d = pq(resp.text)
 trs:_Attrib = d('#main_column div.panel')
 ids = [tr.attrib['data-id'] for tr in trs if tr.attrib.has_key("data-id")]
