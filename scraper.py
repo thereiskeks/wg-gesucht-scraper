@@ -1,8 +1,21 @@
+import requests
+def bot_sendtext(bot_message):
+    ### Send text message
+    if len(parameters) < 3:
+        print("you need to povide a bot_token and a chat_id")
+        return
+    print("sending")
+    bot_token = parameters[1]
+    bot_chatID = parameters[2]
+    send_text = 'https://api.telegram.org/bot' + bot_token + '/sendMessage?chat_id=' + bot_chatID + '&text=' + bot_message
+    print(send_text)
+    requests.get(send_text)
+
+
 try:
 
     import pickle
 
-    import requests
     from lxml.etree import _Attrib
     from pyquery import PyQuery as pq
     from collections import namedtuple
@@ -37,17 +50,6 @@ try:
     except:
         pass
 
-    def bot_sendtext(bot_message):
-        ### Send text message
-        if len(parameters) < 3:
-            print("you need to povide a bot_token and a chat_id")
-            return
-        print("sending")
-        bot_token = parameters[1]
-        bot_chatID = parameters[2]
-        send_text = 'https://api.telegram.org/bot'+bot_token+'/sendMessage?chat_id=' + bot_chatID + '&text=' + bot_message
-        print(send_text)
-        requests.get(send_text)
 
 
     resp = requests.get('https://www.wg-gesucht.de/wg-zimmer-in-Muenchen.90.0.1.0.html?csrf_token=12ab2271e0f9bbb7af82a6924b4d9022f0e43c8f&offer_filter=1&noDeact=1&city_id=90&category=0&rent_type=0&dFr=1551308400&dTo=1553986800')
@@ -94,5 +96,6 @@ try:
         bot_sendtext(link)
 except Exception as error:
     print(error)
+    bot_sendtext(str(error))
 
 
