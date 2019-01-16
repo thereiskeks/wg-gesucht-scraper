@@ -66,22 +66,29 @@ try:
         lastpos = len(ids)
 
 
-    for id in ids:
-        if id in lastIds:
-            lastIds[id] += 1
-        else:
-            lastIds[id] = 0
-
     if lastpos == 0:
         exit(1)
     else:
         ids = ids[:lastpos]
 
 
+    for id in ids:
+        if id in lastIds:
+            lastIds[id] += 1
+        else:
+            lastIds[id] = 0
+
+
+
+
     def generateLink(id):
         return 'http://wg-gesucht.de/' + id + ".html"
 
-    data = [generateLink(e) for e in ids if lastIds[id] < 5]
+    print("new ones "+str(len([generateLink(e) for e in ids if lastIds[e] < 5])))
+    print("old ones "+str(len([generateLink(e) for e in ids if lastIds[e] >= 5])))
+
+    data = [generateLink(e) for e in ids if lastIds[e] < 5]
+
     print('\n'.join('\t'.join(e) for e in data).encode('utf-8'))
     open('lastid.tmp', 'w').write(ids[0])
 
